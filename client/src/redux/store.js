@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import userReducer from "./userSclice.js";
 import messageReducer from './messageSlice.js';
+import socketReducer from './socketSlice.js'
 import {
   persistStore,
   persistReducer,
@@ -23,7 +24,8 @@ const persistConfig = {
 // Combine reducers
 const rootReducer = combineReducers({
   user: userReducer,
-  message: messageReducer
+  message: messageReducer,
+  socket: socketReducer
 });
 
 // Create persisted reducer

@@ -4,14 +4,16 @@ import useGetOtherUsers from "../hooks/useGetOtherUsers";
 import { useSelector } from "react-redux";
 
 const OtherUsers = () => {
-  // my custom hook
   useGetOtherUsers();
-  const { otherUsers } = useSelector((store) => store.user);
-  if (!otherUsers) return; // early return in react
+  const { otherUsers, filterUsers } = useSelector((store) => store.user);
+
+  if (!otherUsers && !filterUsers) return null;
+
+  const usersToDisplay = filterUsers?.length > 0 ? filterUsers : otherUsers;
 
   return (
     <div className="overflow-auto flex-1">
-      {otherUsers?.map((user) => {
+      {usersToDisplay?.map((user) => {
         return <OtherUser key={user._id} user={user} />;
       })}
     </div>

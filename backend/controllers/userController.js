@@ -78,7 +78,7 @@ const login = async (req, res) => {
         sameSite: 'strict',
       })
       .json({
-        success: true, // Move success here
+        success: true,
         _id: user._id,
         username: user.username,
         fullName: user.fullName,
@@ -92,19 +92,15 @@ const login = async (req, res) => {
   }
 }
 
-const logout = async (req, res) => {
+const logout = (req, res) => {
   try {
-    res.status(200).cookie("token", "", { maxAge: 0, httpOnly: true }).json({
-      message: "User logged out successfully!"
-    });
+    return res.status(200).cookie("token", "", { maxAge: 0 }).json({
+      message: "logged out successfully."
+    })
   } catch (error) {
-    console.error(error);
-    res.status(500).json({
-      message: "An error occurred during logout.",
-      error: error.message
-    });
+    console.log(error);
   }
-};
+}
 
 const getOtherUsers = async (req, res) => {
   try {
