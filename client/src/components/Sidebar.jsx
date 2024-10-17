@@ -84,11 +84,6 @@ const Sidebar = () => {
       </form>
       <div className="divider px-3"></div>
       <Otherusers />
-      <div className="mt-2">
-        <button onClick={logoutHandler} className="btn btn-sm">
-          Logout
-        </button>
-      </div>
     </div>
   );
 };
